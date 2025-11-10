@@ -281,27 +281,33 @@ onMounted(() => {
 
 
 
-/* Social icons */
+ /* Social icons */
 .modal-social {
   display: flex;
-  gap: 18px;
+  justify-content: center; /* center horizontally */
+  align-items: center;
+  gap: 20px;
+  margin-top: 24px; /* space above icons */
+  margin-bottom: 8px; /* balance before CLOSE */
 }
 
 .modal-social svg {
-  width: 18px;
-  height: 26px;
+  width: 20px;
+  height: 22px;
   fill: #202124;
-  transition: 0.3s ease;
+  transition: transform 0.25s ease, fill 0.3s ease;
+  cursor: pointer;
 }
 
 .modal-social a:hover svg {
   fill: #0a66c2;
+  transform: scale(1.08); /* light hover lift */
 }
 
+/* Close button - centered under icons */
 .modal-close {
-  position: absolute;
-  right: 32px;
-  bottom: 22px;
+  display: block;
+  margin: 22px auto 0 auto; /* center horizontally */
   background: none;
   border: none;
   font-size: 15px;
@@ -309,7 +315,9 @@ onMounted(() => {
   cursor: pointer;
   font-weight: 500;
   letter-spacing: 1.2px;
+  text-transform: uppercase;
 }
+
 
 /* Responsive */
 @media (max-width: 1000px) {
