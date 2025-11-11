@@ -1,27 +1,34 @@
 <template>
-  <div class="page">
-    <h1>Home</h1>
+  <div class="home-page">
+    <HeroSection />
+    <StatisticsSection />
+    <WhatToExpectSection />
+    <LastYearSection />
   </div>
 </template>
 
 <script>
+import HeroSection from '@/components/homePage/HeroSection.vue'
+import StatisticsSection from '@/components/homePage/StatisticsSection.vue'
+import WhatToExpectSection from '@/components/homePage/WhatToExpectSection.vue'
+import LastYearSection from '@/components/homePage/LastYearSection.vue'
+
 export default {
-  name: 'HomeView'
+  name: 'HomeView',
+  components: {
+    HeroSection,
+    StatisticsSection,
+    WhatToExpectSection,
+    LastYearSection
+  }
 }
 </script>
 
 <style scoped>
-.page {
+.home-page {
+  width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  min-height: calc(100vh - 80px);
-  background-color: #ffffff;
-}
-
-h1 {
-  font-size: 4rem;
-  font-weight: 600;
-  color: #000000;
 }
 </style>

@@ -1,45 +1,73 @@
 <template>
   <header class="header">
     <nav class="nav">
+      <button class="mobile-menu-toggle" @click="toggleMobileMenu" aria-label="Toggle menu">
+        <span class="hamburger-line" :class="{ 'active': isMobileMenuOpen }"></span>
+        <span class="hamburger-line" :class="{ 'active': isMobileMenuOpen }"></span>
+        <span class="hamburger-line" :class="{ 'active': isMobileMenuOpen }"></span>
+      </button>
       <div class="logo-section">
         <router-link to="/" class="logo-link">
           <img src="@/assets/devfest-indore-header-logo.png" alt="DevFest Indore" class="logo-image" />
         </router-link>
         <span class="location-tag">Indore</span>
       </div>
-      <div class="mobile-overlay" :class="{ 'active': isMobileMenuOpen }" @click="closeMobileMenu"></div>
-      <div class="right-section" :class="{ 'mobile-open': isMobileMenuOpen }">
-        <ul class="nav-links">
-          <li>
-            <router-link to="/" class="nav-link" active-class="active" @click="closeMobileMenu">Home</router-link>
-          </li>
-          <li>
-            <router-link to="/agenda" class="nav-link" active-class="active" @click="closeMobileMenu">Agenda</router-link>
-          </li>
-          <li>
-            <router-link to="/speakers" class="nav-link" active-class="active" @click="closeMobileMenu">Speakers</router-link>
-          </li>
-          <li>
-            <router-link to="/badge" class="nav-link" active-class="active" @click="closeMobileMenu">Badge</router-link>
-          </li>
-          <li>
-            <router-link to="/sponsors" class="nav-link" active-class="active" @click="closeMobileMenu">Sponsors</router-link>
-          </li>
-          <li>
-            <router-link to="/team" class="nav-link" active-class="active" @click="closeMobileMenu">Team</router-link>
-          </li>
-          <li>
-            <router-link to="/faq" class="nav-link" active-class="active" @click="closeMobileMenu">FAQ</router-link>
-          </li>
-        </ul>
-        <button class="register-btn" @click="handleRegister">Register Now</button>
-      </div>
-      <button class="mobile-menu-toggle" @click="toggleMobileMenu" aria-label="Toggle menu">
-        <span class="hamburger-line" :class="{ 'active': isMobileMenuOpen }"></span>
-        <span class="hamburger-line" :class="{ 'active': isMobileMenuOpen }"></span>
-        <span class="hamburger-line" :class="{ 'active': isMobileMenuOpen }"></span>
-      </button>
+
+      <ul class="nav-links">
+        <li>
+          <router-link to="/" class="nav-link" active-class="active">Home</router-link>
+        </li>
+        <li>
+          <router-link to="/agenda" class="nav-link" active-class="active">Agenda</router-link>
+        </li>
+        <li>
+          <router-link to="/speakers" class="nav-link" active-class="active">Speakers</router-link>
+        </li>
+        <li>
+          <router-link to="/badge" class="nav-link" active-class="active">Badge</router-link>
+        </li>
+        <li>
+          <router-link to="/sponsors" class="nav-link" active-class="active">Sponsors</router-link>
+        </li>
+        <li>
+          <router-link to="/team" class="nav-link" active-class="active">Team</router-link>
+        </li>
+        <li>
+          <router-link to="/faq" class="nav-link" active-class="active">FAQ</router-link>
+        </li>
+      </ul>
+      <button class="register-btn" @click="handleRegister">Register Now</button>
     </nav>
+    
+    <!-- Mobile overlay backdrop -->
+    <div class="mobile-overlay" :class="{ 'active': isMobileMenuOpen }" @click="closeMobileMenu"></div>
+    
+    <!-- Mobile bottom sheet -->
+    <div class="mobile-bottom-sheet" :class="{ 'active': isMobileMenuOpen }">
+      <ul class="mobile-nav-links">
+        <li>
+          <router-link to="/" class="nav-link" active-class="active" @click="closeMobileMenu">Home</router-link>
+        </li>
+        <li>
+          <router-link to="/agenda" class="nav-link" active-class="active" @click="closeMobileMenu">Agenda</router-link>
+        </li>
+        <li>
+          <router-link to="/speakers" class="nav-link" active-class="active" @click="closeMobileMenu">Speakers</router-link>
+        </li>
+        <li>
+          <router-link to="/badge" class="nav-link" active-class="active" @click="closeMobileMenu">Badge</router-link>
+        </li>
+        <li>
+          <router-link to="/sponsors" class="nav-link" active-class="active" @click="closeMobileMenu">Sponsors</router-link>
+        </li>
+        <li>
+          <router-link to="/team" class="nav-link" active-class="active" @click="closeMobileMenu">Team</router-link>
+        </li>
+        <li>
+          <router-link to="/faq" class="nav-link" active-class="active" @click="closeMobileMenu">FAQ</router-link>
+        </li>
+      </ul>
+    </div>
   </header>
 </template>
 
@@ -67,18 +95,21 @@ export default {
 
 <style scoped>
 .header {
-  background-color: #ffffff;
-  padding: 0.75rem 2rem;
+  background-color: transparent;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: center;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  pointer-events: none;
 }
 
 .nav {
-  width: 80%;
+  width: min(95%, 1400px);
   background-color: #F0F0F0;
   border-radius: 50px;
   padding: 0.5rem 1.5rem;
@@ -86,7 +117,11 @@ export default {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  pointer-events: auto;
+  margin: 0 auto;
 }
 
 .logo-section {
@@ -96,21 +131,25 @@ export default {
   flex-shrink: 0;
 }
 
-.right-section {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+.register-btn {
+  background-color: #FBBC04;
+  color: #333333;
+  border: 1px solid #000000;
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  transition: all 0.2s;
+  white-space: nowrap;
   flex-shrink: 0;
 }
 
-.logo-icon {
-  display: flex;
-  align-items: center;
-}
-
-.logo-icon svg {
-  width: 24px;
-  height: 24px;
+.register-btn:hover {
+  background-color: #F9AB00;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo-link {
@@ -144,13 +183,19 @@ export default {
 }
 
 .nav-links {
-  display: flex;
+  display: none;
   list-style: none;
   gap: 0.75rem;
   margin: 0;
   padding: 0;
   align-items: center;
-  flex-wrap: wrap;
+}
+
+/* Show nav links on desktop, hide on mobile */
+@media (min-width: 1024px) {
+  .nav-links {
+    display: flex;
+  }
 }
 
 .nav-link {
@@ -174,26 +219,6 @@ export default {
   color: #333333;
 }
 
-.register-btn {
-  background-color: #FBBC04;
-  color: #333333;
-  border: 1px solid #000000;
-  padding: 0.5rem 1.25rem;
-  border-radius: 50px;
-  font-size: 0.875rem;
-  font-weight: bold;
-  cursor: pointer;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-
-.register-btn:hover {
-  background-color: #F9AB00;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
@@ -202,7 +227,15 @@ export default {
   border: none;
   cursor: pointer;
   padding: 0.5rem;
-  z-index: 1001;
+  z-index: 1002;
+  flex-shrink: 0;
+}
+
+/* Show hamburger only on smaller screens */
+@media (max-width: 1023px) {
+  .mobile-menu-toggle {
+    display: flex;
+  }
 }
 
 .hamburger-line {
@@ -211,157 +244,151 @@ export default {
   background-color: #333333;
   border-radius: 2px;
   transition: all 0.3s ease;
+  transform-origin: center;
 }
 
 .hamburger-line.active:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
+  transform: rotate(45deg) translateY(10px);
 }
 
 .hamburger-line.active:nth-child(2) {
   opacity: 0;
+  transform: scale(0);
 }
 
 .hamburger-line.active:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
+  transform: rotate(-45deg) translateY(-10px);
 }
 
+/* Mobile overlay backdrop */
 .mobile-overlay {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  z-index: 1050;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.3s ease;
 }
 
 .mobile-overlay.active {
   opacity: 1;
+  pointer-events: auto;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
+/* Mobile bottom sheet */
+.mobile-bottom-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-height: 80vh;
+  background: #F0F0F0;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1060;
+  border-radius: 28px 28px 0 0;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-out;
+  pointer-events: auto;
+}
+
+.mobile-bottom-sheet.active {
+  transform: translateY(0);
+}
+
+.mobile-nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  max-height: calc(80vh - 3rem);
+}
+
+.mobile-nav-links .nav-link {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  transition: background-color 0.2s;
+}
+
+.mobile-nav-links .nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.mobile-nav-links .nav-link.active {
+  background-color: #D0D0D0;
+}
+
+/* Tablet and medium screens */
+@media (max-width: 1200px) {
+  .nav {
+    width: min(96%, 1400px);
+    padding: 0.5rem 1.25rem;
+    gap: 0.75rem;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 1023px) {
   .nav-links {
-    gap: 0.5rem;
-  }
-  
-  .nav-link {
-    padding: 0.35rem 0.7rem;
-    font-size: 0.8125rem;
-  }
-  
-  .logo-image {
-    height: 28px;
-  }
-  
-  .right-section {
-    gap: 0.5rem;
-  }
-  
-  .register-btn {
-    padding: 0.45rem 1rem;
-    font-size: 0.8125rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .header {
-    padding: 0.5rem 1rem;
+    display: none;
   }
   
   .nav {
-    width: 100%;
-    padding: 0.5rem 1rem;
-    position: relative;
-  }
-  
-  .mobile-menu-toggle {
-    display: flex;
-  }
-  
-  .mobile-overlay {
-    display: block;
-  }
-  
-  .right-section {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 280px;
-    height: 100vh;
-    background-color: #F0F0F0;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 5rem 1.5rem 2rem;
-    gap: 1.5rem;
-    transition: right 0.3s ease;
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    z-index: 1000;
-  }
-  
-  .right-section.mobile-open {
-    right: 0;
-  }
-  
-  .nav-links {
-    width: 100%;
-    flex-direction: column;
+    width: min(97%, 1400px);
+    padding: 0.4rem 1rem;
     gap: 0.5rem;
-    align-items: flex-start;
-  }
-  
-  .nav-link {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
-    display: block;
   }
   
   .register-btn {
-    width: 100%;
-    padding: 0.75rem 1.25rem;
-    font-size: 0.875rem;
-  }
-  
-  .logo-image {
-    height: 28px;
-  }
-  
-  .location-tag {
-    font-size: 0.7rem;
-    padding: 0.15rem 0.5rem;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.75rem;
   }
 }
 
+/* Small mobile screens */
+@media (max-width: 640px) {
+  .nav {
+    width: min(98%, 1400px);
+    padding: 0.35rem 0.85rem;
+    gap: 0.4rem;
+  }
+}
+
+/* Very small screens */
 @media (max-width: 480px) {
   .header {
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem;
   }
   
   .nav {
-    padding: 0.5rem 0.75rem;
+    width: 99%;
+    padding: 0.3rem 0.7rem;
+    gap: 0.35rem;
   }
   
   .logo-image {
     height: 24px;
   }
   
-  .location-tag {
-    font-size: 0.65rem;
-    padding: 0.1rem 0.4rem;
-  }
-  
-  .right-section {
-    width: 100%;
-    right: -100%;
-  }
-  
-  .right-section.mobile-open {
-    right: 0;
+  .register-btn {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.7rem;
   }
 }
+
+
 </style>

@@ -1,4 +1,4 @@
- <template>
+<template>
   <section class="faq-section">
     <div class="faq-header">
       <h1>Frequently asked questions</h1>
@@ -12,6 +12,7 @@
         :key="index"
         class="faq-item"
       >
+        <!-- button ensures large tappable area on mobile -->
         <button
           type="button"
           class="faq-question"
@@ -23,6 +24,7 @@
           <span class="arrow" :class="{ open: openIndex === index }" aria-hidden="true">⌄</span>
         </button>
 
+        <!-- keep in DOM with v-show for reliable mobile behavior -->
         <div
           class="faq-answer"
           :class="{ open: openIndex === index }"
@@ -56,6 +58,7 @@ export default {
   },
   methods: {
     toggle(index) {
+      // toggles the index (open/close). Works for click and touchstart
       this.openIndex = this.openIndex === index ? null : index;
     }
   }
@@ -63,52 +66,32 @@ export default {
 </script>
 
 <style scoped>
-/* Base */
+/* ---------------- Base ---------------- */
 * { box-sizing: border-box; }
-
 .faq-section {
   background: #fff;
-  padding: 120px 18px 80px; /* proper spacing below header */
+  padding: 60px 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: calc(100vh - 60px);
+  min-height: calc(80vh - 60px);
 }
 
 /* Header */
 .faq-header {
   width: 100%;
-  max-width: 720px; /* match FAQ width for perfect alignment */
+  max-width: 960px;
   text-align: left;
-  margin-bottom: 32px; /* equal spacing between header and container */
+  margin-bottom: 18px;
 }
+.faq-header h1 { font-size: 2rem; margin: 0 0 8px; font-weight: 700; color: #202124; line-height: 1.15; }
+.faq-header p { margin: 0 0 12px; color: #5f6368; }
+.faq-header hr { height: 2px; background: #e0e0e0; border: none; border-radius: 2px; }
 
-.faq-header h1 {
-  font-size: 2rem;
-  margin: 0 0 8px;
-  font-weight: 700;
-  color: #202124;
-  line-height: 1.15;
-}
-
-.faq-header p {
-  margin: 0 0 10px;
-  color: #5f6368;
-}
-
-.faq-header hr {
-  height: 3px;
-  width: 80px;
-  background: linear-gradient(90deg, #4285f4, #34a853, #fbbc05, #ea4335);
-  border: none;
-  border-radius: 3px;
-  margin-top: 8px;
-}
-
-/* FAQ Container */
+/* Container (single unified card) */
 .faq-container {
   width: 100%;
-  max-width: 720px;
+  max-width: 960px;
   background: #f5f5f5;
   border-radius: 12px;
   border: 1px solid #e0e0e0;
@@ -116,11 +99,11 @@ export default {
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
-/* Items */
+/* Item separator */
 .faq-item { border-bottom: 1px solid #ddd; }
 .faq-item:last-child { border-bottom: none; }
 
-/* Question */
+/* Question (button) */
 .faq-question {
   width: 100%;
   display: flex;
@@ -133,67 +116,51 @@ export default {
   text-align: left;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
-
-.faq-question:focus,
-.faq-question:active {
-  outline: none;
-  background: #ececec;
-}
-
-.q-text {
-  flex: 1;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #202124;
-}
+.faq-question:active,
+.faq-question:focus { outline: none; background: #ececec; }
+.q-text { flex: 1; font-size: 1rem; font-weight: 600; color: #202124; }
 
 /* Arrow */
-.arrow {
-  font-size: 1.4rem;
-  color: #5f6368;
-  transition: transform .24s ease, color .24s ease;
-  margin-left: 12px;
-}
-.arrow.open {
-  transform: rotate(180deg);
-  color: #f6b500;
-}
+.arrow { font-size: 1.4rem; color: #5f6368; transition: transform .24s ease, color .24s ease; margin-left: 12px; }
+.arrow.open { transform: rotate(180deg); color: #f6b500; }
 
-/* Answer */
+/* Answer panel - v-show + CSS open class for transition */
 .faq-answer {
   background: #fff;
-  padding: 0 22px;
+  padding: 0 22px;             /* collapsed has zero vertical padding */
   overflow: hidden;
-  max-height: 0;
+  max-height: 0;               /* collapsed */
   transition: max-height 0.33s ease, padding 0.28s ease, opacity 0.28s ease;
   opacity: 0;
 }
 .faq-answer.open {
-  padding: 16px 22px;
-  max-height: 600px;
+  padding: 16px 22px;          /* vertical padding when open */
+  max-height: 600px;           /* large enough for typical answers */
   opacity: 1;
 }
-.faq-answer p {
-  margin: 0;
-  font-size: 0.96rem;
-  line-height: 1.6;
-  color: #333;
+.faq-answer p { margin: 0; font-size: 0.96rem; line-height: 1.6; color: #333; }
+
+/* ---------------- Responsive tweaks ---------------- */
+@media (max-width: 900px) {
+  .faq-section { padding: 48px 14px; }
+  .faq-header h1 { font-size: 1.8rem; }
+  .faq-question { padding: 16px 18px; }
+  .faq-answer.open { max-height: 700px; }
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .faq-section { padding: 100px 14px 60px; }
-  .faq-header { max-width: 640px; }
-  .faq-header h1 { font-size: 1.8rem; }
-}
 @media (max-width: 600px) {
-  .faq-section { padding: 90px 12px 50px; }
-  .faq-header { max-width: 100%; margin-bottom: 24px; }
+  .faq-section { padding: 36px 12px; }
   .faq-header h1 { font-size: 1.6rem; }
-  .faq-container { width: 100%; border-radius: 8px; }
+  .q-text { font-size: 0.98rem; }
+  .arrow { font-size: 1.2rem; }
+  .faq-question { padding: 14px 14px; }
+  .faq-answer.open { padding: 12px 14px; }
 }
+
 @media (max-width: 420px) {
   .faq-header h1 { font-size: 1.4rem; }
   .q-text { font-size: 0.95rem; }
+  .faq-answer p { font-size: 0.92rem; }
+  .faq-answer.open { max-height: 900px; } /* allow taller answers on small screens */
 }
 </style>
