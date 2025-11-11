@@ -428,7 +428,7 @@ export default {
 
 @media (max-width: 480px) {
   .what-to-expect-section {
-    padding: 2.5rem 0.75rem var(--padding-section-x);
+    padding: 2.5rem var(--padding-section-x) 0.75rem;
   }
   
   .what-to-expect-container {
