@@ -1,13 +1,6 @@
 <template>
-<<<<<<< HEAD
-  <div class="page-content">
-    <div class="page-content-container">
-      <h1>Badge</h1>
-    </div>
-=======
   <div class="page">
     <BadgeGenerator />
->>>>>>> f86f7e1 (feature: added basic BadgeGenerator component for personalized badge creation)
   </div>
 </template>
 
