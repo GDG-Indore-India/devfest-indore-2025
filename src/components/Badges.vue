@@ -95,9 +95,8 @@ function onImageUpload(event) {
       frame.src = '/devfest-frame.png' // put your frame asset in /public
       frame.onload = () => {
         ctx.drawImage(frame, 0, 0, c.width, c.height)
+        showDownload.value = true
       }
-
-      showDownload.value = true
     }
     img.src = e.target.result
   }
