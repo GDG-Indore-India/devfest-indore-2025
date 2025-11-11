@@ -93,7 +93,7 @@ onMounted(() => {
 </script>
 
 
-<style scoped>
+ <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap");
 
 * {
@@ -159,16 +159,16 @@ onMounted(() => {
   background: #f3f3f3;
 }
 .name {
-    font-size: 15px;
-    font-weight: 700;
-    color: #202124;
-    margin-bottom: 2px;
-  }
-  .role {
-    font-size: 12.5px;
-    color: #5f6368;
-    font-weight: 400;
-  }
+  font-size: 15px;
+  font-weight: 700;
+  color: #202124;
+  margin-bottom: 2px;
+}
+.role {
+  font-size: 12.5px;
+  color: #5f6368;
+  font-weight: 400;
+}
 
 /* Modal */
 .modal-overlay {
@@ -228,9 +228,7 @@ onMounted(() => {
   margin-bottom: 25px;
 }
 
- /*  Popup animation */
-
-/* Disable Vue fade flash completely */
+/*  Popup animation */
 .fade-enter-active,
 .fade-leave-active {
   transition: none !important;
@@ -278,8 +276,6 @@ onMounted(() => {
     transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
   }
 }
-
-
 
 /* Social icons */
 .modal-social {
@@ -386,6 +382,16 @@ onMounted(() => {
     font-size: 30px;
     padding-left: 12px;
     padding-right: 20px;
+  }
+
+  /* ✅ Social icons centered only in mobile */
+  .modal-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    margin-top: 16px;
   }
 }
 </style>
