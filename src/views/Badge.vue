@@ -1,12 +1,18 @@
 <template>
   <div class="page">
-    <h1>Badge</h1>
+    <BadgeGenerator />
   </div>
 </template>
 
 <script>
+
+import BadgeGenerator from '../components/Badges.vue'
+
 export default {
-  name: 'BadgeView'
+  name: 'BadgeView',
+  components: {
+    BadgeGenerator
+  }
 }
 </script>
 
