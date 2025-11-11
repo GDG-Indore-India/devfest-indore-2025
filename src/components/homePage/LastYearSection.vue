@@ -11,7 +11,7 @@
 
       <!-- Main Group Image -->
       <div class="main-image-container">
-        <img src="@/assets/last-year-images/group-image-2024.jpg" alt="DevFest 2024 Group Photo" class="main-group-image" />
+        <img src="@/assets/last-year-images/hero-main-img3.jpg" alt="DevFest 2024 Group Photo" class="main-group-image" />
       </div>
 
       <!-- Statistics Section -->
@@ -37,10 +37,10 @@
       <!-- Bottom Two Images -->
       <div class="bottom-images">
         <div class="bottom-image-wrapper">
-          <img src="@/assets/last-year-images/image-1.jpg" alt="Speaker Session" class="bottom-image" />
+          <img src="@/assets/last-year-images/hero-main-img2.jpg" alt="Speaker Session" class="bottom-image" />
         </div>
         <div class="bottom-image-wrapper">
-          <img src="@/assets/last-year-images/image-2.jpg" alt="Panel Discussion" class="bottom-image" />
+          <img src="@/assets/last-year-images/hero-main-img1.jpg" alt="Panel Discussion" class="bottom-image" />
         </div>
       </div>
     </div>
