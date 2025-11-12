@@ -111,13 +111,13 @@ export default {
 };
 </script>
 
- <style scoped>
+<style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap");
 
 /* ===================== PUZZLE STATS SECTION ===================== */
 .statistics-section {
   width: 100%;
-  padding: 110px 0 40px 0; /* space below header */
+  padding: 110px 0 40px 0;
   display: flex;
   justify-content: center;
   background-color: #ffffff;
@@ -136,10 +136,9 @@ export default {
   position: relative;
   overflow: hidden;
   min-height: 230px;
-  font-family: "Google Sans", sans-serif;
 }
 
-/* 🎨 Left decorative image */
+/* 🎨 Left decorative image (keep original alignment) */
 .statistics-left {
   position: absolute;
   bottom: 0;
@@ -157,6 +156,7 @@ export default {
   object-fit: contain;
 }
 
+/* ===================== BLOCKS ===================== */
 .statistics-blocks {
   display: flex;
   gap: 0.8rem;
@@ -174,7 +174,6 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: "Google Sans", sans-serif;
 }
 
 .stat-block-blue {
@@ -206,25 +205,20 @@ export default {
   font-size: 2.2rem;
   font-weight: bold;
   color: #1e1e1e;
-  margin: 0;
-  font-family: "Google Sans", sans-serif;
 }
 
 .stat-label {
   font-size: 0.9rem;
   color: #1e1e1e;
-  margin: 0;
-  font-family: "Google Sans", sans-serif;
 }
 
-/* ===================== BECOME A SPONSOR SECTION ===================== */
+/* ===================== SPONSOR SECTION ===================== */
 .sponsor-section {
   width: 100%;
   padding: 55px 0 45px 0;
   display: flex;
   justify-content: center;
   background-color: #ffffff;
-  font-family: "Google Sans", sans-serif;
 }
 
 .sponsor-container {
@@ -239,77 +233,66 @@ export default {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  font-family: "Google Sans", sans-serif;
 }
 
 .sponsor-text {
   font-size: 1rem;
   line-height: 1.7;
   margin-bottom: 1rem;
-  font-family: "Google Sans", sans-serif;
   color: #1f2022ff;
 }
 
 .sponsor-list {
   list-style: none;
   padding: 0;
-  font-family: "Google Sans", sans-serif;
 }
 
 .sponsor-list li {
   font-size: 1rem;
   line-height: 1.8;
-  font-family: "Google Sans", sans-serif;
 }
 
 .sponsor-link {
   color: #1a73e8;
   text-decoration: none;
-  font-family: "Google Sans", sans-serif;
 }
 .sponsor-link:hover {
   text-decoration: underline;
 }
 
-/* ===================== PREVIOUS YEAR SPONSORS ===================== */
+/* ===================== PREVIOUS SPONSORS ===================== */
 .previous-sponsors {
   width: 100%;
   padding: 50px 0 40px;
   display: flex;
   justify-content: center;
   background-color: #ffffff;
-  font-family: "Google Sans", sans-serif;
 }
 
 .previous-container {
   max-width: 1200px;
   width: 80%;
-  gap: 2rem;
 }
 
 .previous-title {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  font-family: "Google Sans", sans-serif;
 }
 
 .previous-subtitle {
   color: #5f6368;
   margin-bottom: 1.8rem;
-  font-family: "Google Sans", sans-serif;
 }
 
 .sponsor-category {
   margin-bottom: 1.8rem;
-  font-family: "Google Sans", sans-serif;
 }
 
 .sponsor-level {
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.9rem;
-  font-family: "Google Sans", sans-serif;
 }
 
 .sponsor-logo {
@@ -321,14 +304,12 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Google Sans", sans-serif;
 }
 
- .placeholder-box {
+.placeholder-box {
   color: #666;
   font-size: 0.85rem;
   font-style: italic;
-  font-family: "Google Sans", sans-serif;
   background-color: #f9f9f9;
   border: 1.5px solid #ddd;
   border-radius: 10px;
@@ -337,9 +318,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
-
 
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 1024px) {
@@ -362,7 +341,6 @@ export default {
 
   .details-element {
     max-height: 180px;
-    width: auto;
   }
 
   .sponsor-container {
@@ -379,11 +357,9 @@ export default {
   .statistics-container {
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     width: 90%;
     padding: 1.5rem;
     border-radius: 18px;
-    min-height: auto;
   }
 
   .statistics-blocks {
@@ -393,7 +369,6 @@ export default {
     margin-left: 0;
     width: 100%;
     justify-items: center;
-    z-index: 2;
   }
 
   .stat-block {
@@ -437,4 +412,3 @@ export default {
   }
 }
 </style>
-
