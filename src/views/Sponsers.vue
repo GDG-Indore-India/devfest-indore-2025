@@ -138,7 +138,7 @@ export default {
   min-height: 230px;
 }
 
-/* 🎨 Left decorative image (keep original alignment) */
+/* 🎨 Left decorative image */
 .statistics-left {
   position: absolute;
   bottom: 0;
