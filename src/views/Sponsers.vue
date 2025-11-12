@@ -114,6 +114,7 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap");
 
+/* ===================== PUZZLE STATS SECTION ===================== */
 .statistics-section {
   width: 100%;
   padding: 110px 0 40px 0;
