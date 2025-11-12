@@ -114,7 +114,6 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap");
 
-/* ===================== PUZZLE STATS SECTION ===================== */
 .statistics-section {
   width: 100%;
   padding: 110px 0 40px 0;
@@ -138,7 +137,6 @@ export default {
   min-height: 230px;
 }
 
-/* 🎨 Left decorative image */
 .statistics-left {
   position: absolute;
   bottom: 0;
@@ -156,7 +154,6 @@ export default {
   object-fit: contain;
 }
 
-/* ===================== BLOCKS ===================== */
 .statistics-blocks {
   display: flex;
   gap: 0.8rem;
@@ -212,7 +209,6 @@ export default {
   color: #1e1e1e;
 }
 
-/* ===================== SPONSOR SECTION ===================== */
 .sponsor-section {
   width: 100%;
   padding: 55px 0 45px 0;
@@ -260,7 +256,6 @@ export default {
   text-decoration: underline;
 }
 
-/* ===================== PREVIOUS SPONSORS ===================== */
 .previous-sponsors {
   width: 100%;
   padding: 50px 0 40px;
@@ -320,17 +315,14 @@ export default {
   justify-content: center;
 }
 
-/* ===================== RESPONSIVE ===================== */
 @media (max-width: 1024px) {
   .statistics-container {
     flex-direction: column;
     width: 90%;
   }
-
   .statistics-blocks {
     margin-left: 0;
   }
-
   .statistics-left {
     position: relative;
     height: auto;
@@ -338,11 +330,9 @@ export default {
     justify-content: center;
     margin-top: 1rem;
   }
-
   .details-element {
     max-height: 180px;
   }
-
   .sponsor-container {
     grid-template-columns: 1fr;
     width: 90%;
@@ -353,7 +343,6 @@ export default {
   .statistics-section {
     padding: 90px 0 30px 0;
   }
-
   .statistics-container {
     flex-direction: column;
     align-items: center;
@@ -361,7 +350,6 @@ export default {
     padding: 1.5rem;
     border-radius: 18px;
   }
-
   .statistics-blocks {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -370,21 +358,17 @@ export default {
     width: 100%;
     justify-items: center;
   }
-
   .stat-block {
     width: 100%;
     max-width: 180px;
     height: 150px;
   }
-
   .stat-number {
     font-size: 1.9rem;
   }
-
   .stat-label {
     font-size: 0.85rem;
   }
-
   .statistics-left {
     position: relative;
     order: 2;
@@ -394,18 +378,15 @@ export default {
     display: flex;
     justify-content: center;
   }
-
   .details-element {
     width: 80%;
     max-width: 200px;
     height: auto;
     object-fit: contain;
   }
-
   .previous-container {
     width: 90%;
   }
-
   .sponsor-logo {
     width: 180px;
     height: 90px;
