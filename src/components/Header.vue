@@ -44,8 +44,8 @@ export default {
       isMobileMenuOpen: false,
       navItems: [
         { path: '/', label: 'Home' },
-        { path: '/agenda', label: 'Agenda' },
-        { path: '/speakers', label: 'Speakers' },
+        // { path: '/agenda', label: 'Agenda' },
+        // { path: '/speakers', label: 'Speakers' },
         { path: '/badge', label: 'Badge' },
         { path: '/sponsors', label: 'Sponsors' },
         { path: '/team', label: 'Team' },
