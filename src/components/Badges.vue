@@ -39,7 +39,12 @@
     <!-- RIGHT SIDE -->
     <div class="right">
       <div class="preview-box">
-        <canvas ref="canvas" width="1080" height="1350"></canvas>
+        <div
+          class="preview-viewport"
+          :class="[`shape-${selectedShape}`]"
+        >
+          <canvas class="preview-canvas" ref="canvas" width="1080" height="1350"></canvas>
+        </div>
 
         <button
           v-if="showDownload"
@@ -62,6 +67,7 @@ import frameUrl from "../assets/badge.png";
 const canvas = ref(null);
 const fileInput = ref(null);
 const showDownload = ref(false);
+const hasImage = ref(false);
 const frameLoaded = ref(false);
 const frameImg = new Image();
 frameImg.src = frameUrl;
@@ -104,6 +110,9 @@ function onUpload(e) {
           showDownload.value = true;
         };
       }
+
+      // flag used to adjust preview height/styles
+      hasImage.value = true;
     };
     userImg.src = e.target.result;
   };
@@ -119,7 +128,7 @@ function drawFrameOnly() {
   const c = canvas.value;
   if (!c) return;
   const ctx = c.getContext("2d");
-  // keep canvas transparent
+  // keep canvas transparent (preview box provides visible background)
   ctx.clearRect(0, 0, c.width, c.height);
 
   if (frameLoaded.value) {
@@ -161,16 +170,7 @@ function drawUserImage(ctx, img, W, H) {
     startY = -(renderH - H) / 2;
   }
 
-  if (selectedShape.value === "circle") {
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(W / 2, H / 2, W / 2, 0, Math.PI * 2);
-    ctx.clip();
-  }
-
   ctx.drawImage(img, startX, startY, renderW, renderH);
-
-  if (selectedShape.value === "circle") ctx.restore();
 }
 
 function downloadImage() {
@@ -179,42 +179,53 @@ function downloadImage() {
 
   const W = src.width;
   const H = src.height;
-  const radius = Math.round(Math.min(W, H) * 0.05); // ~3% corner radius
+  // corner radius for rectangle/original download (keep subtle like preview)
+  const cornerRadius = 24;
 
-  // Create a temporary canvas and draw the current canvas into it
+  // 1) Create a temporary canvas and draw the current canvas into it
   const temp = document.createElement("canvas");
   temp.width = W;
   temp.height = H;
   const tctx = temp.getContext("2d");
   tctx.drawImage(src, 0, 0);
 
-  // Mask the temp canvas to a rounded rectangle 
+  // 2) Apply mask based on selected shape
   tctx.globalCompositeOperation = "destination-in";
   tctx.beginPath();
-  // rounded rect path
-  tctx.moveTo(radius, 0);
-  tctx.lineTo(W - radius, 0);
-  tctx.quadraticCurveTo(W, 0, W, radius);
-  tctx.lineTo(W, H - radius);
-  tctx.quadraticCurveTo(W, H, W - radius, H);
-  tctx.lineTo(radius, H);
-  tctx.quadraticCurveTo(0, H, 0, H - radius);
-  tctx.lineTo(0, radius);
-  tctx.quadraticCurveTo(0, 0, radius, 0);
+  if (selectedShape.value === "circle") {
+    // perfect circle centered in the canvas using min dimension
+    const r = Math.min(W, H) / 2;
+    tctx.arc(W / 2, H / 2, r, 0, Math.PI * 2);
+  } else if (selectedShape.value === "square" || selectedShape.value === "original") {
+    // centered rounded square using min(W, H)
+    const size = Math.min(W, H);
+    const x = (W - size) / 2;
+    const y = (H - size) / 2;
+    const r = Math.max(0, Math.min(cornerRadius, size / 10));
+    tctx.moveTo(x + r, y);
+    tctx.lineTo(x + size - r, y);
+    tctx.quadraticCurveTo(x + size, y, x + size, y + r);
+    tctx.lineTo(x + size, y + size - r);
+    tctx.quadraticCurveTo(x + size, y + size, x + size - r, y + size);
+    tctx.lineTo(x + r, y + size);
+    tctx.quadraticCurveTo(x, y + size, x, y + size - r);
+    tctx.lineTo(x, y + r);
+    tctx.quadraticCurveTo(x, y, x + r, y);
+  }
   tctx.closePath();
   tctx.fillStyle = "#fff";
   tctx.fill();
   tctx.globalCompositeOperation = "source-over";
 
-  // Create final canvas and draw masked image on top
+  // 3) Create final canvas (transparent background) and draw masked image on top
   const finalC = document.createElement("canvas");
   finalC.width = W;
   finalC.height = H;
   const fctx = finalC.getContext("2d");
-  // leave background transparent 
+  // leave background transparent so exported PNG has transparency
   fctx.drawImage(temp, 0, 0);
 
-  // Export
+  // 4) Export
   const a = document.createElement("a");
   a.href = finalC.toDataURL("image/png");
   a.download = "badge.png";
@@ -232,17 +243,21 @@ function downloadImage() {
   max-width: 980px;
   box-sizing: border-box;
   justify-content: center;
+
   font-family: "Google Sans", sans-serif;
 }
 
 .left {
-  width: 350px;
   box-sizing: border-box;
+  flex: 1 1 340px;
+  max-width: 560px;
 }
 
 .right {
-  width: 450px;
   box-sizing: border-box;
+  flex: 1 1 420px;
+  display: flex;
+  justify-content: center;
 }
 
 /* Centering adjustments for tablet and smaller screens */
@@ -252,17 +267,25 @@ function downloadImage() {
     gap: 1.25rem;
   }
 
-
+  /* Keep the columns centered as a block */
   .left,
   .right {
     width: 100%;
-    max-width: 700px;
+    max-width: none; /* allow full width like other content */
     margin: 0 auto;
   }
 
   .preview-box {
+    /* Full width of content on mobile, keep square via aspect-ratio */
     margin: 0 auto;
+    width: 100%;
+    min-width: 350px;
+    aspect-ratio: 1 / 1;
+    --box-size: 100%;
   }
+
+  /* Let inner viewport use almost all space on mobile for a bolder look */
+  .preview-viewport { width: 100%; height: 100%; }
 }
 
 .label {
@@ -306,15 +329,46 @@ function downloadImage() {
 
 .preview-box {
   background: #eee;
-  padding: 20px;
+  padding: 10px;
   border: 2px solid black;
   border-radius: 20px;
   text-align: center;
+  /* Responsive square container: min 260px, max 520px */
+  /* --box-size: clamp(260px, 52vw, 520px); */
+  /* width: var(--box-size); */
+  /* height: var(--box-size); */
+  box-sizing: border-box;
 }
 
-canvas {
-  width: 100%;
+/* Viewport controlling the visible shape */
+.preview-viewport {
+  /* Scale with the box keeping generous padding */
+  width: 82%;
+  height: 82%;
+  overflow: hidden;
+  background: #fff;
+  margin: auto;
+  border-radius: 20px; /* default rounded rect */
+  display: flex;
+}
+
+/* Square (rounded) */
+.preview-viewport.shape-square { border-radius: 20px; }
+
+/* Circle */
+.preview-viewport.shape-circle { border-radius: 50%; }
+
+/* Original should look same as square */
+.preview-viewport.shape-original {
+  width: 82%;
+  height: 82%;
   border-radius: 20px;
+}
+
+.preview-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .download-btn {
