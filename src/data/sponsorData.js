@@ -1,8 +1,5 @@
-
-
-import konfhub from "@/assets/sponsor/konfhub.png";
+import konfhub from "@/assets/sponsor/Konfhub.png";
 import googlefordevelopers from "@/assets/sponsor/googlefordevelopers.png";
-
 
 
 const sponsors = [

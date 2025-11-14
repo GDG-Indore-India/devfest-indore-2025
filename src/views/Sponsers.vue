@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import sponsors from "@/Data/sponsorData.js";
+import sponsors from "@/data/sponsorData.js";
 
 export default {
   name: "StatisticsAndSponsorSection",
