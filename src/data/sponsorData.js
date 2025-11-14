@@ -1,0 +1,21 @@
+
+
+import konfhub from "@/assets/sponsor/konfhub.png";
+import googlefordevelopers from "@/assets/sponsor/googlefordevelopers.png";
+
+
+
+const sponsors = [
+    {
+    name: "Title-sponsor",
+    img: googlefordevelopers,
+    link: "https://www.konfhub.com/"
+  },
+  {
+    name: "Ticketing Partner",
+    img: konfhub,
+    link: "https://www.konfhub.com/"
+  },
+];
+
+export default sponsors;

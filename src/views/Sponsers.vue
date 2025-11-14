@@ -6,7 +6,6 @@
         <div class="statistics-left">
           <img src="@/assets/details-element.svg" alt="Details" class="details-element" />
         </div>
-
         <div class="statistics-blocks">
           <div class="stat-block stat-block-blue">
             <div class="stat-number">35+</div>
@@ -46,33 +45,28 @@
             eager to expand their knowledge and stay ahead of the curve.
           </p>
         </div>
-
         <div class="sponsor-right">
           <p class="sponsor-text">
             As a DevFest Indore Sponsor, you’ll gain direct access to a highly
             engaged audience of technology professionals, providing the perfect
             opportunity to:
           </p>
-
           <ul class="sponsor-list">
             <li>✅ Connect with top-tier talent and decision-makers</li>
             <li>✅ Showcase your technology and thought leadership</li>
             <li>✅ Generate meaningful leads in a dynamic, innovation-driven environment</li>
           </ul>
-
           <p class="sponsor-text">
             With flexible sponsorship options tailored to your company’s goals,
             we’ll help you maximize your presence and impact.
           </p>
-
           <p class="sponsor-text">
             Join us in shaping the future of software development at DevFest Indore! 🚀
           </p>
-
           <p class="sponsor-text">
             Interested in becoming a DevFest Indore 2025 partner?<br />
             Write us an email at
-            <a href="mailto:	gdgindore@gmail.com" class="sponsor-link">	gdgindore@gmail.com</a>
+            <a href="mailto:gdgindore@gmail.com" class="sponsor-link">gdgindore@gmail.com</a>
           </p>
         </div>
       </div>
@@ -85,20 +79,15 @@
         <p class="previous-subtitle">
           Sponsors dedicated to building a remarkable experience!
         </p>
-
-        <div class="sponsor-category">
-          <h3 class="sponsor-level">Title Sponsor</h3>
-          <div class="sponsor-logo placeholder-box">Logo Placeholder</div>
-        </div>
-
-        <div class="sponsor-category">
-          <h3 class="sponsor-level">Diamond</h3>
-          <div class="sponsor-logo placeholder-box">Logo Placeholder</div>
-        </div>
-
-        <div class="sponsor-category">
-          <h3 class="sponsor-level">Platinum</h3>
-          <div class="sponsor-logo placeholder-box">Logo Placeholder</div>
+        <div
+          class="sponsor-category"
+          v-for="(sponsor, index) in sponsors"
+          :key="index"
+        >
+          <h3 class="sponsor-level">{{ sponsor.name }}</h3>
+          <a :href="sponsor.link" target="_blank" class="sponsor-logo">
+            <img :src="sponsor.img" :alt="sponsor.name" class="sponsor-img" />
+          </a>
         </div>
       </div>
     </section>
@@ -106,13 +95,22 @@
 </template>
 
 <script>
+import sponsors from "@/Data/sponsorData.js";
+
 export default {
   name: "StatisticsAndSponsorSection",
+  data() {
+    return {
+      sponsors,
+    };
+  },
 };
 </script>
 
+ 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&display=swap");
+
 
 .statistics-section {
   width: 100%;
@@ -122,7 +120,6 @@ export default {
   background-color: #ffffff;
   font-family: "Google Sans", sans-serif;
 }
-
 .statistics-container {
   max-width: 1300px;
   width: 78%;
@@ -136,7 +133,6 @@ export default {
   overflow: hidden;
   min-height: 230px;
 }
-
 .statistics-left {
   position: absolute;
   bottom: 0;
@@ -146,14 +142,12 @@ export default {
   align-items: flex-end;
   justify-content: flex-start;
 }
-
 .details-element {
   height: auto;
   max-height: 240px;
   width: auto;
   object-fit: contain;
 }
-
 .statistics-blocks {
   display: flex;
   gap: 0.8rem;
@@ -161,7 +155,6 @@ export default {
   justify-content: space-between;
   margin-left: 340px;
 }
-
 .stat-block {
   flex: 1;
   min-width: 110px;
@@ -172,7 +165,6 @@ export default {
   align-items: center;
   justify-content: center;
 }
-
 .stat-block-blue {
   background-image: url("@/assets/blue.png");
   background-position: center;
@@ -197,18 +189,15 @@ export default {
   background-repeat: no-repeat;
   background-size: contain;
 }
-
 .stat-number {
   font-size: 2.2rem;
   font-weight: bold;
   color: #1e1e1e;
 }
-
 .stat-label {
   font-size: 0.9rem;
   color: #1e1e1e;
 }
-
 .sponsor-section {
   width: 100%;
   padding: 55px 0 45px 0;
@@ -216,7 +205,6 @@ export default {
   justify-content: center;
   background-color: #ffffff;
 }
-
 .sponsor-container {
   max-width: 1200px;
   width: 80%;
@@ -224,30 +212,25 @@ export default {
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 }
-
 .sponsor-title {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }
-
 .sponsor-text {
   font-size: 1rem;
   line-height: 1.7;
   margin-bottom: 1rem;
   color: #1f2022ff;
 }
-
 .sponsor-list {
   list-style: none;
   padding: 0;
 }
-
 .sponsor-list li {
   font-size: 1rem;
   line-height: 1.8;
 }
-
 .sponsor-link {
   color: #1a73e8;
   text-decoration: none;
@@ -255,7 +238,6 @@ export default {
 .sponsor-link:hover {
   text-decoration: underline;
 }
-
 .previous-sponsors {
   width: 100%;
   padding: 50px 0 40px;
@@ -263,44 +245,42 @@ export default {
   justify-content: center;
   background-color: #ffffff;
 }
-
 .previous-container {
   max-width: 1200px;
   width: 80%;
 }
-
 .previous-title {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
-
 .previous-subtitle {
   color: #5f6368;
   margin-bottom: 1.8rem;
 }
-
 .sponsor-category {
   margin-bottom: 1.8rem;
 }
-
 .sponsor-level {
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 0.9rem;
 }
-
 .sponsor-logo {
   background-color: #f5f5f5;
   border: 1px solid #000;
   border-radius: 14px;
-  width: 210px;
-  height: 110px;
+  width: 180px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
+.sponsor-img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
 .placeholder-box {
   color: #666;
   font-size: 0.85rem;
@@ -314,17 +294,14 @@ export default {
   align-items: center;
   justify-content: center;
 }
-
 @media (max-width: 1024px) {
   .statistics-container {
     flex-direction: column;
     width: 90%;
   }
-
   .statistics-blocks {
     margin-left: 0;
   }
-
   .statistics-left {
     position: relative;
     height: auto;
@@ -332,22 +309,18 @@ export default {
     justify-content: center;
     margin-top: 1rem;
   }
-
   .details-element {
     max-height: 180px;
   }
-
   .sponsor-container {
     grid-template-columns: 1fr;
     width: 90%;
   }
 }
-
 @media (max-width: 600px) {
   .statistics-section {
     padding: 90px 0 30px 0;
   }
-
   .statistics-container {
     flex-direction: column;
     align-items: center;
@@ -355,7 +328,6 @@ export default {
     padding: 1.5rem;
     border-radius: 18px;
   }
-
   .statistics-blocks {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -364,21 +336,17 @@ export default {
     width: 100%;
     justify-items: center;
   }
-
   .stat-block {
     width: 100%;
     max-width: 180px;
     height: 150px;
   }
-
   .stat-number {
     font-size: 1.9rem;
   }
-
   .stat-label {
     font-size: 0.85rem;
   }
-
   .statistics-left {
     position: relative;
     order: 2;
@@ -388,32 +356,28 @@ export default {
     display: flex;
     justify-content: center;
   }
-
   .details-element {
     width: 80%;
     max-width: 200px;
     height: auto;
     object-fit: contain;
   }
-
   .previous-container {
     width: 90%;
   }
-
   .sponsor-logo {
-    width: 180px;
-    height: 90px;
+    width: 150px;
+    height: 50px;
   }
-
   .sponsor-text {
-  font-size: 0.97rem;
-  line-height: 1.7;
-  margin-bottom: 1rem;
-  color: #1f2022ff;
-}
-.sponsor-list li {
-  font-size: 0.97rem;
-  line-height: 1.8;
-}
+    font-size: 0.97rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: #1f2022ff;
+  }
+  .sponsor-list li {
+    font-size: 0.97rem;
+    line-height: 1.8;
+  }
 }
 </style>
