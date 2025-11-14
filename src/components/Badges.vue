@@ -243,6 +243,7 @@ function downloadImage() {
   max-width: 980px;
   box-sizing: border-box;
   justify-content: center;
+
   font-family: "Google Sans", sans-serif;
 }
 
@@ -254,7 +255,7 @@ function downloadImage() {
 
 .right {
   box-sizing: border-box;
-  flex: 1 1 520px;
+  flex: 1 1 420px;
   display: flex;
   justify-content: center;
 }
@@ -278,7 +279,7 @@ function downloadImage() {
     /* Full width of content on mobile, keep square via aspect-ratio */
     margin: 0 auto;
     width: 100%;
-    height: auto;
+    min-width: 350px;
     aspect-ratio: 1 / 1;
     --box-size: 100%;
   }
@@ -328,14 +329,14 @@ function downloadImage() {
 
 .preview-box {
   background: #eee;
-  padding: 20px;
+  padding: 10px;
   border: 2px solid black;
   border-radius: 20px;
   text-align: center;
   /* Responsive square container: min 260px, max 520px */
-  --box-size: clamp(260px, 52vw, 520px);
-  width: var(--box-size);
-  height: var(--box-size);
+  /* --box-size: clamp(260px, 52vw, 520px); */
+  /* width: var(--box-size); */
+  /* height: var(--box-size); */
   box-sizing: border-box;
 }
 
