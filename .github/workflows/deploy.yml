@@ -37,7 +37,7 @@ jobs:
       - name: Build site
         run: npm run build
         env:
-          VITE_BASE_PATH: /devfest-indore-2025/
+          VITE_BASE_PATH: /
 
       - name: Copy custom domain file
         if: hashFiles('CNAME') != ''
