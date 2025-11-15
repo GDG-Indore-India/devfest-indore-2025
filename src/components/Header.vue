@@ -55,10 +55,10 @@ export default {
   },
   methods: {
     handleRegister() {
-      window.open('https://konfhub.com/df-indore', '_blank')
+      this.$router.push('/register')
     },
     handleRegisterAndClose() {
-      this.handleRegister()
+      this.$router.push('/register')
       this.closeMobileMenu()
     },
     toggleMobileMenu() {

@@ -6,12 +6,18 @@ import Sponsers from '../views/Sponsers.vue';
 import Speakers from '../views/Speakers.vue';
 import Badge from '../views/Badge.vue';
 import FAQ from '../views/FAQ.vue';
+import Register from '../views/Register.vue';
 
 const routes = [
     {
         path: '/',
         name: 'Home',
         component: Home
+    },
+    {
+        path: '/register',
+        name: 'Register',
+        component: Register
     },
     {
         path: '/team',
