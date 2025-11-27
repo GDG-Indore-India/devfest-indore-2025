@@ -6,7 +6,7 @@ const sponsors = [
     {
     name: "Title-sponsor",
     img: googlefordevelopers,
-    link: "https://www.konfhub.com/"
+    link: "https://developers.google.com/"
   },
   {
     name: "Ticketing Partner",
