@@ -70,90 +70,74 @@
 
     <!-- 🔹 DIALOG CONTENT -->
     <v-card class="rounded-xl">
-      <v-card-text>
-        <v-container fluid class="py-6">
-          <v-row>
-            <v-col cols="12" md="10">
-              <v-list>
-                <v-list-item>
-                  <template #prepend>
-                    <v-avatar size="100">
-                      <v-img
-                        :src="getImgUrl(speakerData.image)"
-                        :alt="speakerData.name"
-                        cover
-                      />
-                    </v-avatar>
-                  </template>
-                  <v-list-item-title class="text-h5 font-weight-bold">
-                    {{ speakerData.name }}
-                  </v-list-item-title>
-                  <v-list-item-subtitle
-                    v-if="speakerData.company?.designation"
-                    class="text-body-1"
-                  >
-                    {{ speakerData.company.designation }}
-                  </v-list-item-subtitle>
-                  <v-list-item-subtitle
-                    v-if="speakerData.company?.name"
-                    class="text-body-1"
-                  >
-                    {{ speakerData.company.name }}
-                  </v-list-item-subtitle>
-                </v-list-item>
-              </v-list>
-            </v-col>
+  <v-card-text>
+    <v-container fluid class="py-6">
 
-            <v-col cols="12" md="2" class="text-right d-none d-md-flex">
-              <v-tooltip text="View in New Tab" location="bottom">
-                <template #activator="{ props }">
-                  <v-btn
-                    v-bind="props"
-                    icon="mdi-open-in-new"
-                    variant="text"
-                    :to="'/speakers/' + speakerData.id"
-                    target="_blank"
-                  />
-                </template>
-              </v-tooltip>
-            </v-col>
-          </v-row>
+      <!-- HEADER SECTION -->
+      <v-row class="align-center">
+        <v-col cols="12" sm="3" class="text-center text-sm-left mb-4 mb-sm-0">
+          <v-avatar size="110" class="mx-auto mx-sm-0">
+            <v-img
+              :src="getImgUrl(speakerData.image)"
+              :alt="speakerData.name"
+              cover
+            />
+          </v-avatar>
+        </v-col>
 
-          <!-- 🔹 BIO -->
-          <v-row class="pt-4">
-            <v-col cols="12" md="12">
-              <p class="text-body-1 mt-2">
-                {{ speakerData.bio }}
-              </p>
+        <v-col cols="12" sm="9">
+          <p class="text-h5 font-weight-bold mb-1">{{ speakerData.name }}</p>
 
-              <PersonSocialInfo
-                v-if="speakerData.social"
-                :socialInfo="speakerData.social"
-                class="mb-4"
-              />
+          <p
+            v-if="speakerData.company?.designation"
+            class="text-body-1 mb-0"
+          >
+            {{ speakerData.company.designation }}
+          </p>
 
-              <SpeakerSessionsCard
-                v-if="speakerData.sessionId?.length"
-                :small="true"
-                :speakerData="speakerData"
-                :sessionDetails="sessionDetails"
-              />
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card-text>
+          <p
+            v-if="speakerData.company?.name"
+            class="text-body-1 mb-0"
+          >
+            {{ speakerData.company.name }}
+          </p>
+        </v-col>
+      </v-row>
 
-      <v-card-actions class="justify-end">
-        <v-btn
-          color="success"
-          variant="flat"
-          class="rounded-lg text-white"
-          @click="dialog = false"
-        >
-          Close
-        </v-btn>
-      </v-card-actions>
-    </v-card>
+      <!-- BIO -->
+      <v-row class="pt-4">
+        <v-col cols="12">
+          <p class="text-body-1 mt-2">{{ speakerData.bio }}</p>
+
+          <PersonSocialInfo
+            v-if="speakerData.social"
+            :socialInfo="speakerData.social"
+            class="mb-4"
+          />
+
+          <SpeakerSessionsCard
+            v-if="speakerData.sessionId?.length"
+            :small="true"
+            :speakerData="speakerData"
+            :sessionDetails="sessionDetails"
+          />
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-card-text>
+
+  <v-card-actions class="justify-end">
+    <v-btn
+      color="success"
+      variant="flat"
+      class="rounded-lg text-white"
+      @click="dialog = false"
+    >
+      Close
+    </v-btn>
+  </v-card-actions>
+</v-card>
+
   </v-dialog>
 </template>
 
