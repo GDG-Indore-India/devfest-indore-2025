@@ -86,62 +86,17 @@
       </div>
     </section>
 
-    <!-- PLATINUM SPONSOR SECTION -->
-    <section class="platinum-sponsors" v-if="sponsorData.platinumSponsor">
-      <div class="sponsor-section-container">
-        <h2 class="section-title">Platinum Sponsor</h2>
-        <p class="section-subtitle">
-          Our premier partner making DevFest Indore 2025 possible!
-        </p>
-
-        <div class="platinum-sponsor-wrapper">
-          <a 
-            :href="sponsorData.platinumSponsor.link" 
-            target="_blank" 
-            class="platinum-sponsor-logo"
-          >
-            <img 
-              :src="sponsorData.platinumSponsor.img" 
-              :alt="sponsorData.platinumSponsor.name" 
-              class="platinum-sponsor-img" 
-            />
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CURRENT YEAR SPONSORS SECTION -->
-    <section class="current-sponsors" v-if="sponsorData.currentYearSponsors && sponsorData.currentYearSponsors.length > 0">
-      <div class="sponsor-section-container">
-        <h2 class="section-title">Our Sponsors</h2>
-        <p class="section-subtitle">
-          Sponsors dedicated to building a remarkable experience in 2025!
-        </p>
-
-        <div
-          class="sponsor-category"
-          v-for="(sponsor, index) in sponsorData.currentYearSponsors"
-          :key="index"
-        >
-          <h3 class="sponsor-level">{{ sponsor.name }}</h3>
-          <a :href="sponsor.link" target="_blank" class="sponsor-logo">
-            <img :src="sponsor.img" :alt="sponsor.name" class="sponsor-img" />
-          </a>
-        </div>
-      </div>
-    </section>
-
     <!-- PREVIOUS YEAR SPONSORS SECTION -->
     <section class="previous-sponsors">
-      <div class="sponsor-section-container">
-        <h2 class="section-title">Previous year sponsors</h2>
-        <p class="section-subtitle">
+      <div class="previous-container">
+        <h2 class="previous-title">Previous year sponsors</h2>
+        <p class="previous-subtitle">
           Sponsors dedicated to building a remarkable experience!
         </p>
 
         <div
           class="sponsor-category"
-          v-for="(sponsor, index) in sponsorData.previousYearSponsors"
+          v-for="(sponsor, index) in sponsors"
           :key="index"
         >
           <h3 class="sponsor-level">{{ sponsor.name }}</h3>
@@ -155,13 +110,13 @@
 </template>
 
 <script>
-import sponsorData from "@/data/sponsorData.js";
+import sponsors from "@/data/sponsorData.js";
 
 export default {
   name: "StatisticsAndSponsorSection",
   data() {
     return {
-      sponsorData,
+      sponsors,
     };
   },
 };
@@ -332,25 +287,7 @@ export default {
   background-color: #1559b8;
 }
 
-/* PLATINUM SPONSOR SECTION */
-.platinum-sponsors {
-  width: 100%;
-  padding: 50px 0 40px;
-  display: flex;
-  justify-content: center;
-  background-color: #f8f9fa;
-}
-
-/* CURRENT YEAR SPONSORS SECTION */
-.current-sponsors {
-  width: 100%;
-  padding: 50px 0 40px;
-  display: flex;
-  justify-content: center;
-  background-color: #ffffff;
-}
-
-/* PREVIOUS YEAR SPONSORS SECTION */
+/*PREVIOUS SPONSORS */
 .previous-sponsors {
   width: 100%;
   padding: 50px 0 40px;
@@ -359,51 +296,20 @@ export default {
   background-color: #ffffff;
 }
 
-.sponsor-section-container {
+.previous-container {
   max-width: 1200px;
   width: 80%;
 }
 
-.section-title {
+.previous-title {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
-.section-subtitle {
+.previous-subtitle {
   color: #5f6368;
   margin-bottom: 1.8rem;
-}
-
-/* PLATINUM SPONSOR STYLING */
-.platinum-sponsor-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.platinum-sponsor-logo {
-  background-color: #ffffff;
-  border: 2px solid #1a73e8;
-  border-radius: 16px;
-  width: 300px;
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.platinum-sponsor-logo:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(26, 115, 232, 0.2);
-}
-
-.platinum-sponsor-img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
 }
 
 .sponsor-category {
@@ -507,14 +413,9 @@ export default {
     object-fit: contain;
   }
 
-  .sponsor-section-container {
+  .previous-container {
     width: 90%;
     margin-top: 0;
-  }
-
-  .platinum-sponsor-logo {
-    width: 250px;
-    height: 100px;
   }
 
   .sponsor-logo {
