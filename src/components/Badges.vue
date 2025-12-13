@@ -334,9 +334,9 @@ function downloadImage() {
   border-radius: 20px;
   text-align: center;
   /* Responsive square container: min 260px, max 520px */
-  /* --box-size: clamp(260px, 52vw, 520px); */
-  /* width: var(--box-size); */
-  /* height: var(--box-size); */
+  --box-size: clamp(260px, 50vw, 420px);
+  width: var(--box-size);
+  height: var(--box-size);
   box-sizing: border-box;
 }
 
