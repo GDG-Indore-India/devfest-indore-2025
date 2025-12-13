@@ -85,5 +85,56 @@
     },
     "sessionId": [],
     "track": ""
+  },
+  {
+    "id": "6",
+    "name": "Shashank Saxena",
+    "company": {
+      "designation": "Solution Architect at Ccube",
+      "name": ""
+    },
+    "image": "shashank-saxena.jpg",
+    "talkTitle": "Operationalising AI Agents at Scale with the Vertex AI Agent Engine",
+    "bio": "",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/shashank-saxena-628b4029/",
+      "twitter": ""
+    },
+    "sessionId": [],
+    "track": ""
+  },
+  {
+    "id": "7",
+    "name": "Shachita Jain",
+    "company": {
+      "designation": "Technical Product Manager at Kintsugi and WTM Ambassador",
+      "name": ""
+    },
+    "image": "shachita-jain.jpg",
+    "talkTitle": "From Coding to Catalyzing: Becoming a Technical Product Manager",
+    "bio": "",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/shachita/",
+      "twitter": "https://twitter.com/ShachitaJain"
+    },
+    "sessionId": [],
+    "track": ""
+  },
+  {
+    "id": "8",
+    "name": "Ankit Sharma",
+    "company": {
+      "designation": "Angular & Web Development expert",
+      "name": ""
+    },
+    "image": "ankit-sharma.jpg",
+    "talkTitle": "Smart Angular Apps with Gemini: Building an AI-Powered Writing Assistant",
+    "bio": "",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/ankitsharma-007/",
+      "twitter": "https://twitter.com/ankitsharma_007"
+    },
+    "sessionId": [],
+    "track": ""
   }
 ]
