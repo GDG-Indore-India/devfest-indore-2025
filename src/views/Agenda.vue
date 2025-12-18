@@ -70,178 +70,329 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import EventItem from '@/components/EventItem.vue'
 import EventModal from '@/components/EventModal.vue'
+import speakersData from '@/assets/data/speakers.json'
+
+// Helper function to get talkTitle by speaker name
+const getTalkTitle = (speakerName) => {
+  const speaker = speakersData.find(s => s.name === speakerName)
+  return speaker?.talkTitle || speakerName
+}
 
 const EVENTS = [
-  // Static Main Events
+  // Static Main Events - Shared across all tracks
   {
     id: 1,
-    startTime: '9:30 AM',
+    startTime: '8:30 AM',
     endTime: '10:00 AM',
-    title: 'Welcome Note',
+    title: 'Registrations',
     track: 'Main Event',
-    date: 'Nov 30, 2024',
-    fullTime: '09:30 AM to 10:00 AM',
-    duration: '30 Min',
-    overview: 'Join us for the opening ceremony of DevFest Indore 2025. Meet the organizers, learn about the event schedule, and get ready for an amazing day of learning and networking.'
+    date: 'December 20, 2025',
+    fullTime: '08:30 AM to 10:00 AM',
+    duration: '1 Hr 30 Min',
+    overview: 'Join us for the registration of DevFest Indore 2025. Meet the organizers, learn about the event schedule, and get ready for an amazing day of learning and networking.'
   },
-  {
-    id: 2,
-    startTime: '10:00 AM',
-    endTime: '11:00 AM',
-    title: 'Keynote',
-    track: 'Main Event',
-    date: 'Nov 30, 2024',
-    fullTime: '10:00 AM to 11:00 AM',
-    duration: '60 Min',
-    overview: 'An inspiring keynote presentation covering the latest trends in technology, innovation, and developer tools. Learn about what\'s next in the Google ecosystem and beyond.'
-  },
-  // Track 1 Events
-  {
-    id: 3,
-    startTime: '11:15 AM',
-    endTime: '11:45 AM',
-    title: 'Building Scalable Apps with Flutter',
-    track: 'Track 1',
-    date: 'Nov 30, 2024',
-    fullTime: '11:15 AM to 11:45 AM',
-    duration: '30 Min',
-    overview: 'Learn best practices for building scalable mobile applications using Flutter. This session covers architecture patterns, state management, and performance optimization techniques.'
-  },
+  
+  // Cloud+ML Track Events
   {
     id: 4,
-    startTime: '12:00 PM',
-    endTime: '12:30 PM',
-    title: 'Modern Web Development with Angular',
-    track: 'Track 1',
-    date: 'Nov 30, 2024',
-    fullTime: '12:00 PM to 12:30 PM',
-    duration: '30 Min',
-    overview: 'Discover the latest features in Angular and learn how to build modern, performant web applications. Topics include signals, standalone components, and server-side rendering.'
+    startTime: '10:15 AM',
+    endTime: '10:30 AM',
+    title: 'Opening Note',
+    track: 'Cloud+ML',
+    date: 'December 20, 2025',
+    fullTime: '10:15 AM to 10:30 AM',
+    duration: '15 Min',
+    overview: 'Opening note for the Cloud+ML track.'
   },
   {
     id: 5,
-    startTime: '2:00 PM',
-    endTime: '2:30 PM',
-    title: 'Cloud-Native Applications with Google Cloud',
-    track: 'Track 1',
-    date: 'Nov 30, 2024',
-    fullTime: '02:00 PM to 02:30 PM',
-    duration: '30 Min',
-    overview: 'Explore cloud-native development patterns and learn how to leverage Google Cloud Platform services to build scalable, resilient applications.'
+    startTime: '10:30 AM',
+    endTime: '11:15 AM',
+    title: getTalkTitle('Himanshu Jain'),
+    track: 'Cloud+ML',
+    date: 'December 20, 2025',
+    fullTime: '10:30 AM to 11:15 AM',
+    duration: '45 Min',
+    overview: 'Session by Himanshu Jain on Reinventing Learning: How AI Is Transforming the Future of Education.'
   },
-  // Track 2 Events
   {
     id: 6,
     startTime: '11:15 AM',
-    endTime: '11:45 AM',
-    title: 'Introduction to Machine Learning with TensorFlow',
-    track: 'Track 2',
-    date: 'Nov 30, 2024',
-    fullTime: '11:15 AM to 11:45 AM',
-    duration: '30 Min',
-    overview: 'Get started with machine learning using TensorFlow. Learn fundamental concepts and build your first ML model in this hands-on session.'
+    endTime: '12:00 PM',
+    title: getTalkTitle('Nikhilesh Tayal'),
+    track: 'Cloud+ML',
+    date: 'December 20, 2025',
+    fullTime: '11:15 AM to 12:00 PM',
+    duration: '45 Min',
+    overview: 'Session by Nikhilesh Tayal on Building Intelligent AI Agents: From RAG Pipelines to Real-World BFSI Use Cases.'
   },
   {
     id: 7,
     startTime: '12:00 PM',
-    endTime: '12:30 PM',
-    title: 'Firebase: Building Real-time Applications',
-    track: 'Track 2',
-    date: 'Nov 30, 2024',
-    fullTime: '12:00 PM to 12:30 PM',
-    duration: '30 Min',
-    overview: 'Learn how to build real-time applications using Firebase. This session covers Firestore, Authentication, Cloud Functions, and more.'
+    endTime: '1:00 PM',
+    title: 'Panel Discussion',
+    track: 'Cloud+ML',
+    date: 'December 20, 2025',
+    fullTime: '12:00 PM to 1:00 PM',
+    duration: '1 Hr',
+    overview: 'An engaging panel discussion featuring industry experts sharing insights on the latest trends in technology, innovation, and developer tools.'
   },
   {
     id: 8,
-    startTime: '2:00 PM',
-    endTime: '2:30 PM',
-    title: 'Android Development Best Practices',
-    track: 'Track 2',
-    date: 'Nov 30, 2024',
-    fullTime: '02:00 PM to 02:30 PM',
-    duration: '30 Min',
-    overview: 'Discover modern Android development best practices including Jetpack Compose, Kotlin coroutines, and architectural patterns.'
+    startTime: '1:00 PM',
+    endTime: '2:00 PM',
+    title: 'Lunch',
+    track: 'Cloud+ML',
+    date: 'December 20, 2025',
+    fullTime: '1:00 PM to 2:00 PM',
+    duration: '1 Hr',
+    overview: 'Take a break and enjoy lunch while networking with fellow attendees, speakers, and organizers.'
   },
-  // Lightning Talks
   {
     id: 9,
-    startTime: '3:00 PM',
-    endTime: '3:15 PM',
-    title: 'The Future of Web: WebAssembly',
-    track: 'Lightning Talks',
-    date: 'Nov 30, 2024',
-    fullTime: '03:00 PM to 03:15 PM',
-    duration: '15 Min',
-    overview: 'A quick dive into WebAssembly and how it\'s changing the landscape of web development.'
+    startTime: '2:00 PM',
+    endTime: '2:20 PM',
+    title: 'IIST [Bhavesh]',
+    track: 'Cloud+ML',
+    date: 'December 20, 2025',
+    fullTime: '2:00 PM to 2:20 PM',
+    duration: '20 Min',
+    overview: 'Session by IIST representative Bhavesh.'
   },
   {
     id: 10,
-    startTime: '3:15 PM',
-    endTime: '3:30 PM',
-    title: 'Chrome DevTools Pro Tips',
-    track: 'Lightning Talks',
-    date: 'Nov 30, 2024',
-    fullTime: '03:15 PM to 03:30 PM',
-    duration: '15 Min',
-    overview: 'Learn advanced Chrome DevTools techniques to supercharge your debugging and development workflow.'
+    startTime: '2:20 PM',
+    endTime: '3:00 PM',
+    title: getTalkTitle('Ganesh Divekar'),
+    track: 'Cloud+ML',
+    date: 'December 20, 2025',
+    fullTime: '2:20 PM to 3:00 PM',
+    duration: '40 Min',
+    overview: 'Session by Ganesh Divekar, Lead AI Engineer.'
   },
   {
     id: 11,
-    startTime: '3:30 PM',
-    endTime: '3:45 PM',
-    title: 'GraphQL in 15 Minutes',
-    track: 'Lightning Talks',
-    date: 'Nov 30, 2024',
-    fullTime: '03:30 PM to 03:45 PM',
-    duration: '15 Min',
-    overview: 'A rapid introduction to GraphQL and why it might be the right choice for your next API.'
+    startTime: '3:00 PM',
+    endTime: '3:40 PM',
+    title: getTalkTitle('Shashank Saxena'),
+    track: 'Cloud+ML',
+    date: 'December 20, 2025',
+    fullTime: '3:00 PM to 3:40 PM',
+    duration: '40 Min',
+    overview: 'Session by Shashank Saxena on Operationalising AI Agents at Scale with the Vertex AI Agent Engine.'
   },
-  // Career Compass
   {
     id: 12,
-    startTime: '4:00 PM',
-    endTime: '4:30 PM',
-    title: 'Navigating Your Tech Career',
-    track: 'Career Compass',
-    date: 'Nov 30, 2024',
-    fullTime: '04:00 PM to 04:30 PM',
-    duration: '30 Min',
-    overview: 'Get expert advice on navigating your career in tech. Topics include skill development, job searching, and career growth strategies.'
+    startTime: '3:40 PM',
+    endTime: '4:00 PM',
+    title: 'Closing Note',
+    track: 'Cloud+ML',
+    date: 'December 20, 2025',
+    fullTime: '3:40 PM to 4:00 PM',
+    duration: '20 Min',
+    overview: 'Closing note for the Cloud+ML track.'
   },
+
+  // Mobile+Web Track Events
   {
     id: 13,
-    startTime: '4:30 PM',
-    endTime: '5:00 PM',
-    title: 'Interview Preparation for Developers',
-    track: 'Career Compass',
-    date: 'Nov 30, 2024',
-    fullTime: '04:30 PM to 05:00 PM',
-    duration: '30 Min',
-    overview: 'Learn how to prepare for technical interviews, including coding challenges, system design, and behavioral questions.'
+    startTime: '10:15 AM',
+    endTime: '10:30 AM',
+    title: 'Opening Note',
+    track: 'Mobile+Web',
+    date: 'December 20, 2025',
+    fullTime: '10:15 AM to 10:30 AM',
+    duration: '15 Min',
+    overview: 'Opening note for the Mobile+Web track.'
   },
-  // Founders and CXOs Round Table
   {
     id: 14,
-    startTime: '5:30 PM',
-    endTime: '6:00 PM',
-    title: 'Building Successful Tech Startups',
-    track: 'Founders and CXOs Round Table',
-    date: 'Nov 30, 2024',
-    fullTime: '05:30 PM to 06:00 PM',
-    duration: '30 Min',
-    overview: 'Join successful founders and CXOs as they share insights on building and scaling tech startups. Learn about funding, team building, and product-market fit.'
+    startTime: '10:30 AM',
+    endTime: '11:15 AM',
+    title: getTalkTitle('Ankit Sharma'),
+    track: 'Mobile+Web',
+    date: 'December 20, 2025',
+    fullTime: '10:30 AM to 11:15 AM',
+    duration: '45 Min',
+    overview: 'Session by Ankit Sharma on Smart Angular Apps with Gemini: Building an AI-Powered Writing Assistant.'
   },
   {
     id: 15,
-    startTime: '6:00 PM',
-    endTime: '6:30 PM',
-    title: 'Leadership in Technology',
-    track: 'Founders and CXOs Round Table',
-    date: 'Nov 30, 2024',
-    fullTime: '06:00 PM to 06:30 PM',
-    duration: '30 Min',
-    overview: 'A panel discussion on leadership challenges in technology companies, featuring perspectives from experienced executives.'
+    startTime: '11:15 AM',
+    endTime: '12:00 PM',
+    title: getTalkTitle('Divyanshu Bhargava'),
+    track: 'Mobile+Web',
+    date: 'December 20, 2025',
+    fullTime: '11:15 AM to 12:00 PM',
+    duration: '45 Min',
+    overview: 'Session by Divyanshu Bhargava on Scaling Server-Driven UI with Stack.'
+  },
+  {
+    id: 16,
+    startTime: '12:00 PM',
+    endTime: '1:00 PM',
+    title: 'Panel Discussion',
+    track: 'Mobile+Web',
+    date: 'December 20, 2025',
+    fullTime: '12:00 PM to 1:00 PM',
+    duration: '1 Hr',
+    overview: 'An engaging panel discussion featuring industry experts sharing insights on the latest trends in technology, innovation, and developer tools.'
+  },
+  {
+    id: 17,
+    startTime: '1:00 PM',
+    endTime: '2:00 PM',
+    title: 'Lunch',
+    track: 'Mobile+Web',
+    date: 'December 20, 2025',
+    fullTime: '1:00 PM to 2:00 PM',
+    duration: '1 Hr',
+    overview: 'Take a break and enjoy lunch while networking with fellow attendees, speakers, and organizers.'
+  },
+  {
+    id: 18,
+    startTime: '2:00 PM',
+    endTime: '2:20 PM',
+    title: 'FM [Ravi]',
+    track: 'Mobile+Web',
+    date: 'December 20, 2025',
+    fullTime: '2:00 PM to 2:20 PM',
+    duration: '20 Min',
+    overview: 'Session by FM representative Ravi.'
+  },
+  {
+    id: 19,
+    startTime: '2:20 PM',
+    endTime: '3:00 PM',
+    title: getTalkTitle('Abhishek Doshi'),
+    track: 'Mobile+Web',
+    date: 'December 20, 2025',
+    fullTime: '2:20 PM to 3:00 PM',
+    duration: '40 Min',
+    overview: 'Session by Abhishek Doshi on Power of BuildContext in Flutter.'
+  },
+  {
+    id: 20,
+    startTime: '3:00 PM',
+    endTime: '3:40 PM',
+    title: 'Srashti Jain',
+    track: 'Mobile+Web',
+    date: 'December 20, 2025',
+    fullTime: '3:00 PM to 3:40 PM',
+    duration: '40 Min',
+    overview: 'Session by Srashti Jain.'
+  },
+  {
+    id: 21,
+    startTime: '3:40 PM',
+    endTime: '4:00 PM',
+    title: 'Closing Note',
+    track: 'Mobile+Web',
+    date: 'December 20, 2025',
+    fullTime: '3:40 PM to 4:00 PM',
+    duration: '20 Min',
+    overview: 'Closing note for the Mobile+Web track.'
+  },
+
+  // PM+Design+Ent Track Events
+  {
+    id: 22,
+    startTime: '10:15 AM',
+    endTime: '10:30 AM',
+    title: 'Opening Note',
+    track: 'PM+Design+Ent',
+    date: 'December 20, 2025',
+    fullTime: '10:15 AM to 10:30 AM',
+    duration: '15 Min',
+    overview: 'Opening note for the PM+Design+Ent track.'
+  },
+  {
+    id: 23,
+    startTime: '10:30 AM',
+    endTime: '11:15 AM',
+    title: 'Rahul Chautel',
+    track: 'PM+Design+Ent',
+    date: 'December 20, 2025',
+    fullTime: '10:30 AM to 11:15 AM',
+    duration: '45 Min',
+    overview: 'Session by Rahul Chautel.'
+  },
+  {
+    id: 24,
+    startTime: '11:15 AM',
+    endTime: '12:00 PM',
+    title: 'Sunny Ralli',
+    track: 'PM+Design+Ent',
+    date: 'December 20, 2025',
+    fullTime: '11:15 AM to 12:00 PM',
+    duration: '45 Min',
+    overview: 'Session by Sunny Ralli.'
+  },
+  {
+    id: 25,
+    startTime: '12:00 PM',
+    endTime: '1:00 PM',
+    title: 'Panel Discussion: The Great Reinvention - Turning AI Disruption into a Competitive Advantage',
+    track: 'PM+Design+Ent',
+    date: 'December 20, 2025',
+    fullTime: '12:00 PM to 1:00 PM',
+    duration: '1 Hr',
+    overview: 'This panel will explore how startups and enterprises are adapting to AI-led change, turning uncertainty into opportunity using AI-driven strategies, real-world lessons from founders building in competitive markets, and what it takes to stay relevant in an AI-first economy.'
+  },
+  {
+    id: 26,
+    startTime: '1:00 PM',
+    endTime: '2:00 PM',
+    title: 'Lunch',
+    track: 'PM+Design+Ent',
+    date: 'December 20, 2025',
+    fullTime: '1:00 PM to 2:00 PM',
+    duration: '1 Hr',
+    overview: 'Take a break and enjoy lunch while networking with fellow attendees, speakers, and organizers.'
+  },
+  {
+    id: 27,
+    startTime: '2:00 PM',
+    endTime: '2:20 PM',
+    title: 'Open Discussion Activity',
+    track: 'PM+Design+Ent',
+    date: 'December 20, 2025',
+    fullTime: '2:00 PM to 2:20 PM',
+    duration: '20 Min',
+    overview: 'An interactive open discussion activity for the PM+Design+Ent track.'
+  },
+  {
+    id: 28,
+    startTime: '2:20 PM',
+    endTime: '3:00 PM',
+    title: 'Gautam Billore',
+    track: 'PM+Design+Ent',
+    date: 'December 20, 2025',
+    fullTime: '2:20 PM to 3:00 PM',
+    duration: '40 Min',
+    overview: 'Session by Gautam Billore.'
+  },
+  {
+    id: 29,
+    startTime: '3:00 PM',
+    endTime: '3:40 PM',
+    title: getTalkTitle('Shachita Jain'),
+    track: 'PM+Design+Ent',
+    date: 'December 20, 2025',
+    fullTime: '3:00 PM to 3:40 PM',
+    duration: '40 Min',
+    overview: 'Session by Shachita Jain on From Coding to Catalyzing: Becoming a Technical Product Manager.'
+  },
+  {
+    id: 30,
+    startTime: '3:40 PM',
+    endTime: '4:00 PM',
+    title: 'Closing Note',
+    track: 'PM+Design+Ent',
+    date: 'December 20, 2025',
+    fullTime: '3:40 PM to 4:00 PM',
+    duration: '20 Min',
+    overview: 'Closing note for the PM+Design+Ent track.'
   }
 ]
 

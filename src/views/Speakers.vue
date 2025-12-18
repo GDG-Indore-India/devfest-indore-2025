@@ -59,9 +59,6 @@ export default {
     this.SpeakersData = this.sortByName(SpeakersData);
     this.SessionDetails = SessionDetails.sort((a, b) => (a.id > b.id ? 1 : -1));
   },
-  created() {
-    document.title = "Speakers | Devfest Indore 2025";
-  },
 };
 </script>
 

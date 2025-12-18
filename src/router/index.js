@@ -56,4 +56,23 @@ const router = createRouter({
     routes
 })
 
+// Set page titles based on route
+router.beforeEach((to, from, next) => {
+    const titleMap = {
+        'Home': 'DevFest Indore 2025 | India\'s Largest Tech Conference',
+        'Agenda': 'Agenda | DevFest Indore 2025',
+        'Speakers': 'Speakers | DevFest Indore 2025',
+        'Sponsors': 'Sponsors | DevFest Indore 2025',
+        'Team': 'Team | DevFest Indore 2025',
+        'Badge': 'Badge | DevFest Indore 2025',
+        'FAQ': 'FAQ | DevFest Indore 2025',
+        'Register': 'Register | DevFest Indore 2025'
+    }
+    
+    const pageTitle = titleMap[to.name] || 'DevFest Indore 2025'
+    document.title = pageTitle
+    
+    next()
+})
+
 export default router
