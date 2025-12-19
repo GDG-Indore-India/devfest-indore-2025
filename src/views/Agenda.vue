@@ -108,7 +108,7 @@ const EVENTS = [
     id: 5,
     startTime: '10:30 AM',
     endTime: '11:15 AM',
-    title: getTalkTitle('Himanshu Jain'),
+    title: 'Reinventing Learning: How AI Is Transforming the Future of Education',
     track: 'Cloud+ML',
     date: 'December 20, 2025',
     fullTime: '10:30 AM to 11:15 AM',
@@ -119,23 +119,23 @@ const EVENTS = [
     id: 6,
     startTime: '11:15 AM',
     endTime: '12:00 PM',
-    title: getTalkTitle('Nikhilesh Tayal'),
+    title: 'Building AI Agents with self-managing memory',
     track: 'Cloud+ML',
     date: 'December 20, 2025',
     fullTime: '11:15 AM to 12:00 PM',
     duration: '45 Min',
-    overview: 'Session by Nikhilesh Tayal on Building Intelligent AI Agents: From RAG Pipelines to Real-World BFSI Use Cases.'
+    overview: 'Session by Nikhilesh Tayal on Building AI Agents with self-managing memory.'
   },
   {
     id: 7,
     startTime: '12:00 PM',
     endTime: '1:00 PM',
-    title: 'Panel Discussion',
+    title: 'The Smart Creator: Using AI to Grow Faster [Panel Discussion]',
     track: 'Cloud+ML',
     date: 'December 20, 2025',
     fullTime: '12:00 PM to 1:00 PM',
     duration: '1 Hr',
-    overview: 'An engaging panel discussion featuring industry experts sharing insights on the latest trends in technology, innovation, and developer tools.'
+    overview: 'An engaging panel discussion on The Smart Creator: Using AI to Grow Faster, featuring industry experts sharing insights on leveraging AI for growth and innovation.'
   },
   {
     id: 8,
@@ -152,34 +152,34 @@ const EVENTS = [
     id: 9,
     startTime: '2:00 PM',
     endTime: '2:20 PM',
-    title: 'IIST [Bhavesh]',
+    title: 'From Accuracy to Architecture: How to Build Deployable AI Systems',
     track: 'Cloud+ML',
     date: 'December 20, 2025',
     fullTime: '2:00 PM to 2:20 PM',
     duration: '20 Min',
-    overview: 'Session by IIST representative Bhavesh.'
+    overview: 'Session by Dr. Shewta Agrawal on From Accuracy to Architecture: How to Build Deployable AI Systems.'
   },
   {
     id: 10,
     startTime: '2:20 PM',
     endTime: '3:00 PM',
-    title: getTalkTitle('Ganesh Divekar'),
+    title: 'Building Intelligent AI Agents: From RAG Pipelines to Real-World BFSI Use Cases',
     track: 'Cloud+ML',
     date: 'December 20, 2025',
     fullTime: '2:20 PM to 3:00 PM',
     duration: '40 Min',
-    overview: 'Session by Ganesh Divekar, Lead AI Engineer.'
+    overview: 'Session by Ganesh Divekar on Building Intelligent AI Agents: From RAG Pipelines to Real-World BFSI Use Cases.'
   },
   {
     id: 11,
     startTime: '3:00 PM',
     endTime: '3:40 PM',
-    title: getTalkTitle('Shashank Saxena'),
+    title: 'Operationalizing AI Agents at Scale with the Vertex AI Agent Engine',
     track: 'Cloud+ML',
     date: 'December 20, 2025',
     fullTime: '3:00 PM to 3:40 PM',
     duration: '40 Min',
-    overview: 'Session by Shashank Saxena on Operationalising AI Agents at Scale with the Vertex AI Agent Engine.'
+    overview: 'Session by Shashank Saxena on Operationalizing AI Agents at Scale with the Vertex AI Agent Engine.'
   },
   {
     id: 12,
@@ -209,7 +209,7 @@ const EVENTS = [
     id: 14,
     startTime: '10:30 AM',
     endTime: '11:15 AM',
-    title: getTalkTitle('Ankit Sharma'),
+    title: 'Smart Angular Apps with Gemini: Building an AI-Powered Writing Assistant',
     track: 'Mobile+Web',
     date: 'December 20, 2025',
     fullTime: '10:30 AM to 11:15 AM',
@@ -220,23 +220,23 @@ const EVENTS = [
     id: 15,
     startTime: '11:15 AM',
     endTime: '12:00 PM',
-    title: getTalkTitle('Divyanshu Bhargava'),
+    title: 'Scaling Server-Driven UI with Stac',
     track: 'Mobile+Web',
     date: 'December 20, 2025',
     fullTime: '11:15 AM to 12:00 PM',
     duration: '45 Min',
-    overview: 'Session by Divyanshu Bhargava on Scaling Server-Driven UI with Stack.'
+    overview: 'Session by Divyanshu Bhargava on Scaling Server-Driven UI with Stac.'
   },
   {
     id: 16,
     startTime: '12:00 PM',
     endTime: '1:00 PM',
-    title: 'Panel Discussion',
+    title: 'The Great Reinvention: Turning AI Disruption into a Competitive Advantage [Panel Discussion]',
     track: 'Mobile+Web',
     date: 'December 20, 2025',
     fullTime: '12:00 PM to 1:00 PM',
     duration: '1 Hr',
-    overview: 'An engaging panel discussion featuring industry experts sharing insights on the latest trends in technology, innovation, and developer tools.'
+    overview: 'This panel will explore how startups and enterprises are adapting to AI-led change, turning uncertainty into opportunity using AI-driven strategies, real-world lessons from founders building in competitive markets, and what it takes to stay relevant in an AI-first economy.'
   },
   {
     id: 17,
@@ -253,18 +253,18 @@ const EVENTS = [
     id: 18,
     startTime: '2:00 PM',
     endTime: '2:20 PM',
-    title: 'FM [Ravi]',
+    title: 'Chit Chat with Ravi Gurjar - Voice that connect Hearts',
     track: 'Mobile+Web',
     date: 'December 20, 2025',
     fullTime: '2:00 PM to 2:20 PM',
     duration: '20 Min',
-    overview: 'Session by FM representative Ravi.'
+    overview: 'Session by Ravi Gurjar on Chit Chat with Ravi Gurjar - Voice that connect Hearts.'
   },
   {
     id: 19,
     startTime: '2:20 PM',
     endTime: '3:00 PM',
-    title: getTalkTitle('Abhishek Doshi'),
+    title: 'Power of BuildContext in Flutter',
     track: 'Mobile+Web',
     date: 'December 20, 2025',
     fullTime: '2:20 PM to 3:00 PM',
@@ -275,12 +275,12 @@ const EVENTS = [
     id: 20,
     startTime: '3:00 PM',
     endTime: '3:40 PM',
-    title: 'Srashti Jain',
+    title: 'Why Angular is the Secret Weapon for High-Performance AI Dashboards',
     track: 'Mobile+Web',
     date: 'December 20, 2025',
     fullTime: '3:00 PM to 3:40 PM',
     duration: '40 Min',
-    overview: 'Session by Srashti Jain.'
+    overview: 'Session by Srashti Jain on Why Angular is the Secret Weapon for High-Performance AI Dashboards.'
   },
   {
     id: 21,
@@ -310,34 +310,34 @@ const EVENTS = [
     id: 23,
     startTime: '10:30 AM',
     endTime: '11:15 AM',
-    title: 'Rahul Chautel',
+    title: 'Engineering and Product: One Playbook',
     track: 'PM+Design+Ent',
     date: 'December 20, 2025',
     fullTime: '10:30 AM to 11:15 AM',
     duration: '45 Min',
-    overview: 'Session by Rahul Chautel.'
+    overview: 'Session by Rahul Chautel on Engineering and Product: One Playbook.'
   },
   {
     id: 24,
     startTime: '11:15 AM',
     endTime: '12:00 PM',
-    title: 'Sunny Ralli',
+    title: 'Building next Billion dollar bootstrapped company',
     track: 'PM+Design+Ent',
     date: 'December 20, 2025',
     fullTime: '11:15 AM to 12:00 PM',
     duration: '45 Min',
-    overview: 'Session by Sunny Ralli.'
+    overview: 'Session by Sunny Ralli on Building next Billion dollar bootstrapped company.'
   },
   {
     id: 25,
     startTime: '12:00 PM',
     endTime: '1:00 PM',
-    title: 'Panel Discussion: The Great Reinvention - Turning AI Disruption into a Competitive Advantage',
+    title: 'From Hello World to IPO: The New Lifecycle of AI-Native Communities [Panel Discussion]',
     track: 'PM+Design+Ent',
     date: 'December 20, 2025',
     fullTime: '12:00 PM to 1:00 PM',
     duration: '1 Hr',
-    overview: 'This panel will explore how startups and enterprises are adapting to AI-led change, turning uncertainty into opportunity using AI-driven strategies, real-world lessons from founders building in competitive markets, and what it takes to stay relevant in an AI-first economy.'
+    overview: 'An engaging panel discussion on From Hello World to IPO: The New Lifecycle of AI-Native Communities, exploring the journey of AI-native communities from inception to public offering.'
   },
   {
     id: 26,
@@ -365,18 +365,18 @@ const EVENTS = [
     id: 28,
     startTime: '2:20 PM',
     endTime: '3:00 PM',
-    title: 'Gautam Billore',
+    title: 'Culture in Tech Entrepreneurship',
     track: 'PM+Design+Ent',
     date: 'December 20, 2025',
     fullTime: '2:20 PM to 3:00 PM',
     duration: '40 Min',
-    overview: 'Session by Gautam Billore.'
+    overview: 'Session by Gautam Billore on Culture in Tech Entrepreneurship.'
   },
   {
     id: 29,
     startTime: '3:00 PM',
     endTime: '3:40 PM',
-    title: getTalkTitle('Shachita Jain'),
+    title: 'From Coding to Catalyzing: Becoming a Technical Product Manager',
     track: 'PM+Design+Ent',
     date: 'December 20, 2025',
     fullTime: '3:00 PM to 3:40 PM',
