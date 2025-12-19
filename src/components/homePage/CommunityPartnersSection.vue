@@ -40,6 +40,10 @@ import gdgIndoreLogo from '@/assets/community-partner-logos/Logo_Black_Short 1.p
 import techCommunityLogo from '@/assets/community-partner-logos/image 33005.png'
 import idcCommunityLogo from '@/assets/community-partner-logos/IDC_Community_Partner.png'
 import sakhiLogo from '@/assets/community-partner-logos/Sakhi.png'
+import Headstart from '@/assets/community-partner-logos/Headstart.png'
+import Mist from '@/assets/community-partner-logos/Mist.png'
+import MyFm from '@/assets/community-partner-logos/MyFm.png'
+import Workie from '@/assets/community-partner-logos/Workie.png'
 
 export default {
   name: 'CommunityPartnersSection',
@@ -81,7 +85,25 @@ export default {
         {
           name: 'Sakhi',
           logo: sakhiLogo
+        },
+        {
+          name: 'Headshort',
+          logo: Headstart
+        },
+        {
+          name: 'Mist',
+          logo: Mist
+        },
+        {
+          name: 'My Fm',
+          logo: MyFm
+        },
+        {
+          name: 'Workie',
+          logo: Workie
         }
+
+
       ]
     }
   },
@@ -96,7 +118,7 @@ export default {
 <style scoped>
 .community-partners-section {
   width: 100%;
-  padding: var(--space-4xl) var(--padding-section-x) var(--space-4xl);
+  padding: var(--space-2xl) var(--padding-section-x) var(--space-2xl);
   display: flex;
   justify-content: center;
   background-color: #ffffff;
@@ -107,14 +129,14 @@ export default {
   width: var(--content-width);
   display: flex;
   flex-direction: column;
-  gap: var(--space-2xl);
+  gap: var(--space-md);
 }
 
 /* Section Header */
 .section-header {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--space-sm);
   text-align: left;
 }
 
@@ -137,8 +159,8 @@ export default {
 .partners-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-2xl) var(--space-xl);
-  margin-top: var(--space-xl);
+  gap: var(--space-md) var(--space-lg);
+  margin-top: var(--space-sm);
   align-items: center;
   justify-items: start;
 }
